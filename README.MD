@@ -31,7 +31,8 @@ eval $(minikube -p minikube docker-env)
 
 ## Initialize minikube tunnel
 
-* In order to access the services of your cluster locally with minikube, we must initialize the tunnel to expose the ports from our host with the following command.
+* In order to access the services of your cluster locally with minikube, we must initialize the tunnel to expose the ports from our host 
+* In a different terminal run the following command and keep it running.
 
 ````
 minikube tunnel
@@ -69,13 +70,19 @@ cd unosquare-challenge-service
 docker build -t unosquare-challenge .
 ````
 
+* go back to the root directory
+
+```
+cd ..
+````
+
 * apply the kubernetes manifest with the following command.
 
 ```
 kubectl apply -f deployment.yaml
 ```
 
-* then run
+* after a few seconds run
 ````
 kubectl get all
 ````
