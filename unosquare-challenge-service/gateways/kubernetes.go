@@ -23,12 +23,11 @@ func NewKubernetesGateway() KubernetesGateway {
 
 func (kg *kubernetesGateway) GetServices() ([]*models.Service, error) {
 
-	// creates the in-cluster config
 	config, err := rest.InClusterConfig()
 	if err != nil {
 		return nil, err
 	}
-	// creates the clientset
+
 	clientset, err := kubernetes.NewForConfig(config)
 	if err != nil {
 		return nil, err
@@ -50,11 +49,10 @@ func (kg *kubernetesGateway) GetServices() ([]*models.Service, error) {
 				CreationTimestamp: svc.CreationTimestamp.Time,
 			},
 			Spec: models.Spec{
-				ClusterIP:       svc.Spec.ClusterIP,
-				ClusterIPs:      svc.Spec.ClusterIPs,
-				Type:            string(svc.Spec.Type),
-				SessionAffinity: svc.Spec.SessionAffinityConfig.String(),
-				//IpFamilies: svc.Spec.IPFamilies,
+				ClusterIP:             svc.Spec.ClusterIP,
+				ClusterIPs:            svc.Spec.ClusterIPs,
+				Type:                  string(svc.Spec.Type),
+				SessionAffinity:       svc.Spec.SessionAffinityConfig.String(),
 				InternalTrafficPolicy: string(*svc.Spec.InternalTrafficPolicy),
 			},
 		})

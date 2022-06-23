@@ -2,17 +2,6 @@ package main
 
 import (
 	"log"
-	"unosquare-challenge/api/configs"
-
-	/*
-		"context"
-		"flag"
-		"k8s.io/apimachinery/pkg/api/errors"
-		metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
-		"k8s.io/client-go/kubernetes"
-		"k8s.io/client-go/tools/clientcmd"
-		"k8s.io/client-go/util/homedir"
-	*/
 
 	"github.com/gin-contrib/cors"
 	"github.com/gin-contrib/static"
@@ -20,6 +9,7 @@ import (
 	"github.com/go-openapi/runtime/middleware"
 
 	"unosquare-challenge/api"
+	"unosquare-challenge/api/configs"
 )
 
 func main() {

@@ -2,11 +2,13 @@ package models
 
 import "time"
 
+// swagger:model service
 type Service struct {
 	Metadata Metadata `json:"metadata"`
 	Spec     Spec     `json:"spec"`
 }
 
+// swagger:model metadata
 type Metadata struct {
 	Name              string    `json:"name"`
 	Namespace         string    `json:"namespace"`
@@ -15,6 +17,7 @@ type Metadata struct {
 	CreationTimestamp time.Time `json:"creation_timestamp"`
 }
 
+// swagger:model spec
 type Spec struct {
 	ClusterIP             string   `json:"cluster_ip"`
 	ClusterIPs            []string `json:"cluster_ips"`

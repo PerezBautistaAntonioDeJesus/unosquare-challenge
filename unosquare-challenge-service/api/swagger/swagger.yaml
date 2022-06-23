@@ -1,2 +1,105 @@
-paths: {}
+basePath: /
+consumes:
+- application/json
+definitions:
+  errorResponse:
+    properties:
+      error:
+        type: string
+        x-go-name: Error
+    type: object
+    x-go-name: ErrorResponse
+    x-go-package: _/Users/antoniodejesusperezbautista/apps/unosquare-challenge/unosquare-challenge-service/api/models
+  metadata:
+    properties:
+      creation_timestamp:
+        format: date-time
+        type: string
+        x-go-name: CreationTimestamp
+      name:
+        type: string
+        x-go-name: Name
+      namespace:
+        type: string
+        x-go-name: Namespace
+      resource_version:
+        type: string
+        x-go-name: ResourceVersion
+      uid:
+        type: string
+        x-go-name: Uid
+    type: object
+    x-go-name: Metadata
+    x-go-package: _/Users/antoniodejesusperezbautista/apps/unosquare-challenge/unosquare-challenge-service/api/models
+  service:
+    properties:
+      metadata:
+        $ref: '#/definitions/metadata'
+      spec:
+        $ref: '#/definitions/spec'
+    type: object
+    x-go-name: Service
+    x-go-package: _/Users/antoniodejesusperezbautista/apps/unosquare-challenge/unosquare-challenge-service/api/models
+  spec:
+    properties:
+      cluster_ip:
+        type: string
+        x-go-name: ClusterIP
+      cluster_ips:
+        items:
+          type: string
+        type: array
+        x-go-name: ClusterIPs
+      internal_traffic_policy:
+        type: string
+        x-go-name: InternalTrafficPolicy
+      ip_families:
+        items:
+          type: string
+        type: array
+        x-go-name: IpFamilies
+      session_affinity:
+        type: string
+        x-go-name: SessionAffinity
+      type:
+        type: string
+        x-go-name: Type
+    type: object
+    x-go-name: Spec
+    x-go-package: _/Users/antoniodejesusperezbautista/apps/unosquare-challenge/unosquare-challenge-service/api/models
+host: localhost:8080
+info:
+  contact:
+    email: antonio.perba@gmail.com
+    name: Antonio Perez
+  description: The nex documentation provides you the information for the API endpoints
+  license:
+    name: MIT no
+  termsOfService: the use of the API is the responsability of the user
+  title: Unosquare challenge API specification
+  version: 0.0.1
+paths:
+  /cluster/services:
+    get:
+      description: list services running on kubernetes
+      operationId: list-services
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: list of services
+          schema:
+            items:
+              $ref: '#/definitions/service'
+            type: array
+        "500":
+          description: internal error
+          schema:
+            $ref: '#/definitions/errorResponse'
+      tags:
+      - services
+produces:
+- application/json
+schemes:
+- http
 swagger: "2.0"
