@@ -1,0 +1,64 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: unosquare
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      role: unosquare
+  template:
+    metadata:
+      labels:
+        role: unosquare
+    spec:
+      containers:
+      - name: unosquare
+        image: unosquare-challenge
+        imagePullPolicy: Never
+        ports:
+        - containerPort: 8080
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: unosquare
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 8080
+    targetPort: 8080
+  selector:
+    role: unosquare
+
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: unosquare-web
+  labels:
+    name: unosquare-web
+spec:
+  containers:
+  - name: unosquare-web
+    image: unosquare-challenge-web
+    imagePullPolicy: Never
+    ports:
+      - containerPort: 80
+        name: unosquare-web
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: unosquare-web
+spec:
+  type: LoadBalancer
+  selector:
+    name: unosquare-web
+  ports:
+  - name: unosquare-web
+    protocol: TCP
+    port: 8082
+    targetPort: unosquare-web
