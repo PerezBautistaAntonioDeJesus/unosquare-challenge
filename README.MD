@@ -2,6 +2,9 @@
 
 ## Installation
 * Clone repo
+```
+git clone git@github.com:PerezBautistaAntonioDeJesus/unosquare-challenge.git
+```
 
 
 ## Requirements
